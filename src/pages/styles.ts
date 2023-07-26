@@ -6,6 +6,8 @@ const Main = styled.main`
   width: 100vw;
   height: 100vh;
   align-items: center;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 export const Container = styled.div<{ quantityItem: number }>`

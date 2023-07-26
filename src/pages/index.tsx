@@ -7,6 +7,7 @@ import Main, {
   OpenText,
   CardWrapper,
 } from "./styles";
+import { StopWatch } from "@/Components/Stopwatch";
 
 const Home = () => {
   const cardsGame = [
@@ -19,6 +20,8 @@ const Home = () => {
     { id: 7, content: "😎", isOpen: false, matchFound: false },
     { id: 8, content: "😏", isOpen: false, matchFound: false },
   ];
+
+  const [finishedGame, setFinishedGame] = useState(false);
 
   const [currentCards, setCurrentCards] = useState(
     cardsGame
@@ -38,7 +41,12 @@ const Home = () => {
     );
   };
 
+  console.log(finishedGame);
+
   useEffect(() => {
+    if (currentCards.filter((item) => item.matchFound === false).length === 0) {
+      setFinishedGame(true);
+    }
     const chosenCards = currentCards.filter(
       (item) => item.isOpen === true && item.matchFound === false
     );
@@ -64,6 +72,7 @@ const Home = () => {
 
   return (
     <Main>
+      <StopWatch active={finishedGame} />
       <Container quantityItem={currentCards.length / 2}>
         {currentCards.map((emojis, index) => (
           <CardWrapper open={emojis.isOpen} key={index}>
