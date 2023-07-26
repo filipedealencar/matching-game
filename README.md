@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Memory Game</h1>
 
-## Getting Started
+<p align="center">
+  <img src="./public/memory-game-screenshot.png" alt="Memory Game Screenshot">
+</p>
 
-First, run the development server:
+## Description
+
+Memory Game is a simple web-based memory matching game built using Next.js and Styled Components. The objective of the game is to find and match all pairs of identical cards within the least number of moves.
+
+The project demonstrates how to create a fun and interactive game using modern web technologies.
+
+<!-- ## Live Demo
+
+You can try out the live demo of the Memory Game here: [Memory Game Demo](https://your-live-demo-url) -->
+
+## Installation
+
+To run the Memory Game locally on your machine, follow these steps:
+
+1. Clone this repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/filipedealencar/matching-game.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd matching-game
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install the dependencies:
 
-## Learn More
+```bash
+yarn install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Open your web browser and access the game at `http://localhost:3000`.
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Next.js: A React framework for building server-side rendered applications.
+- Styled Components: A CSS-in-JS library for styling React components.
+- React: A JavaScript library for building user interfaces.
+- HTML5: The markup language used for structuring the game.
+- CSS3: The style sheet language used for designing the game's layout and appearance.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## How to Play
+
+1. Click on a card to flip it over and reveal its hidden symbol.
+2. Click on another card to find a matching pair.
+3. If the cards match, they will remain face up. Otherwise, they will be flipped back after a short delay.
+4. Keep flipping cards and finding pairs until all cards are matched.
+5. The game ends when all pairs are found, and the final score is displayed.
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or want to add new features, please open an issue or submit a pull request.
+
+<!-- ## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
