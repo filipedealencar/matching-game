@@ -1,72 +1,70 @@
 import styled from "styled-components";
 
-const Main = styled.main`
+export const MainForms = styled.div`
   display: flex;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
+  justify-content: center;
   align-items: center;
+`;
+
+export const FormContainer = styled.div`
+  display: flex;
   flex-direction: column;
-  gap: 24px;
-`;
-
-export const Container = styled.div<{ quantityItem: number }>`
-  display: grid;
-  grid-template-columns: ${({ quantityItem }) =>
-    `repeat(${quantityItem}, 1fr)`};
-  grid-template-rows: ${({ quantityItem }) =>
-    ` repeat(${quantityItem > 4 ? 2 : 1}, 1fr)`};
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-`;
-
-export const CardWrapper = styled.div<{ open: boolean }>`
-  width: 8.5rem;
-  height: 14rem;
-  perspective: 1000px;
-  transition: transform 0.5s;
-  transform: ${({ open }) => (open ? "rotateY(180deg)" : "rotateY(0deg)")};
-`;
-
-export const CardsOpen = styled.div<{ open: boolean; matchFound: boolean }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background: ${({ matchFound }) => (matchFound ? "#64d158" : "#e96565")};
-  margin: 0;
-
-  border-radius: 16px;
-  perspective: 1000px;
-  transition: transform 0.5s;
-  backface-visibility: hidden;
-  transform: ${({ open }) => (open ? "rotateY(0deg)" : "rotateY(180deg)")};
-`;
-export const CardsClose = styled.div<{ open: boolean }>`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background: #6580e9;
-  margin: 0;
-  border-radius: 16px;
-  perspective: 1000px;
-  transition: transform 0.5s;
-  backface-visibility: hidden;
-  transform: ${({ open }) => (open ? "rotateY(180deg)" : "rotateY(0deg)")};
-  cursor: pointer;
-`;
-
-export const OpenText = styled.div`
-  font-size: 1.1rem;
-  transform: rotate(-45deg);
-  display: flex;
   align-items: center;
   justify-content: center;
-  color: #d1d1d1;
-  text-align: center;
-`;
-export const Cards = styled.p`
-  font-size: 100px;
+  width: 100%;
 `;
 
-export default Main;
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const StyledLabel = styled.label`
+  font-size: 1rem;
+`;
+
+export const FormHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  text-align: center;
+`;
+
+export const InitGame = styled.div`
+  color: #474646;
+  width: 20rem;
+  text-align: center;
+  font-size: 1rem;
+  padding: 43px 10px 15px 20px;
+`;
+
+export const InputForm = styled.input`
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #46adf7;
+  &:focus {
+    box-shadow: 0 0 0 0;
+    border: 2px solid #0576c7;
+    outline: 0;
+  }
+`;
+
+export const ButtonSubmit = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #3498db;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 10px;
+  text-decoration: none;
+`;
+
+export default MainForms;

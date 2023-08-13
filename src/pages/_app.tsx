@@ -1,6 +1,8 @@
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { AppProps } from "next/app";
 import GlobalStyle from "@/styles/GlobalStyles";
+import { GlobalContextProvider } from "@/Context/GlobalContext";
+import { Toaster } from "react-hot-toast";
 
 const theme: DefaultTheme = {
   colors: {
@@ -11,10 +13,13 @@ const theme: DefaultTheme = {
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <GlobalContextProvider>
+      <ThemeProvider theme={theme}>
+        <Toaster position="top-right" reverseOrder={false} />
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </GlobalContextProvider>
   );
 };
 

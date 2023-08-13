@@ -1,3 +1,6 @@
 interface IStopwatch {
-  active: boolean;
+  stop: boolean;
+  start: boolean;
+  userName: string;
+  getTime: (time: any) => void;
 }

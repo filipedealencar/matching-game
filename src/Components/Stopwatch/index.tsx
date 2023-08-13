@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { MainStopWatch, ContentClock } from "./styles";
+import { MainStopWatch, ContentClock, UserName } from "./styles";
 
-export const StopWatch: React.FC<IStopwatch> = ({ active }) => {
+export const StopWatch: React.FC<IStopwatch> = ({
+  stop,
+  userName,
+  start,
+  getTime,
+}) => {
   const [time, setTime] = useState({
     seconds: 0,
     minutes: 0,
@@ -17,39 +22,41 @@ export const StopWatch: React.FC<IStopwatch> = ({ active }) => {
   };
 
   useEffect(() => {
-    // if (active) {
-    setStopWatchRef(
-      setInterval(() => {
-        setTime((times) => {
-          return {
-            ...times,
-            hours:
-              times.minutes + 1 === 60 && times.seconds + 1 === 60
-                ? times.hours + 1
-                : times.hours,
-            minutes:
-              times.seconds + 1 === 60
-                ? times.minutes === 59 && times.seconds === 59
-                  ? 0
-                  : times.minutes + 1
-                : times.minutes,
-            seconds: times.seconds === 59 ? 0 : times.seconds + 1,
-          };
-        });
-      }, 1000)
-    );
-    // }
-  }, []);
+    if (start) {
+      setStopWatchRef(
+        setInterval(() => {
+          setTime((times) => {
+            return {
+              ...times,
+              hours:
+                times.minutes + 1 === 60 && times.seconds + 1 === 60
+                  ? times.hours + 1
+                  : times.hours,
+              minutes:
+                times.seconds + 1 === 60
+                  ? times.minutes === 59 && times.seconds === 59
+                    ? 0
+                    : times.minutes + 1
+                  : times.minutes,
+              seconds: times.seconds === 59 ? 0 : times.seconds + 1,
+            };
+          });
+        }, 1000)
+      );
+    }
+  }, [start]);
 
   useEffect(() => {
-    if (active) {
+    if (stop) {
+      getTime(time);
       clearInterval(stopWatchRef);
     }
-  }, [active]);
+  }, [stop]);
 
   return (
     <MainStopWatch>
-      <ContentClock timeActive={active}>
+      <UserName timeActive={stop}>{userName.toLocaleUpperCase()}</UserName>
+      <ContentClock timeActive={stop}>
         {formatTime(time.hours, time.minutes, time.seconds)}
       </ContentClock>
     </MainStopWatch>

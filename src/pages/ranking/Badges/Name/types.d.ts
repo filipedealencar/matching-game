@@ -1,0 +1,3 @@
+interface IBadgeName {
+  name: string;
+}

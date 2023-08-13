@@ -1,102 +1,72 @@
-import { useEffect, useState } from "react";
-import Main, {
-  Cards,
-  Container,
-  CardsOpen,
-  CardsClose,
-  OpenText,
-  CardWrapper,
+import { useForm } from "react-hook-form";
+import {
+  ButtonSubmit,
+  FormContainer,
+  FormHeader,
+  InitGame,
+  InputForm,
+  MainForms,
+  StyledForm,
+  StyledLabel,
 } from "./styles";
-import { StopWatch } from "@/Components/Stopwatch";
+import { Logo } from "@/Icons";
+import { useContext } from "react";
+import { GlobalContext } from "@/Context/GlobalContext";
+import router from "next/router";
+import CustomSelect from "@/Components/CustomSelect";
 
 const Home = () => {
-  const cardsGame = [
-    { id: 1, content: "😀", isOpen: false, matchFound: false },
-    { id: 2, content: "😂", isOpen: false, matchFound: false },
-    { id: 3, content: "😅", isOpen: false, matchFound: false },
-    { id: 4, content: "😆", isOpen: false, matchFound: false },
-    { id: 5, content: "😋", isOpen: false, matchFound: false },
-    { id: 6, content: "😍", isOpen: false, matchFound: false },
-    { id: 7, content: "😎", isOpen: false, matchFound: false },
-    { id: 8, content: "😏", isOpen: false, matchFound: false },
-  ];
+  const { register, handleSubmit, setValue } = useForm();
+  const { setUserData, userData } = useContext(GlobalContext);
 
-  const [finishedGame, setFinishedGame] = useState(false);
-
-  const [currentCards, setCurrentCards] = useState(
-    cardsGame
-      .map((item) => [item, item])
-      .flat()
-      .sort(() => Math.random() - 0.57)
-  );
-
-  const openTheCard = (index: number) => {
-    setCurrentCards(
-      currentCards.map((item, i) => {
-        if (index === i) {
-          return { ...item, isOpen: true };
-        }
-        return item;
-      })
-    );
+  const onSubmit = (data: any) => {
+    router.push("/game");
+    setUserData((state) => {
+      return { ...state, name: data.name, level: data.level };
+    });
   };
 
-  console.log(finishedGame);
+  console.log(userData);
 
-  useEffect(() => {
-    if (currentCards.filter((item) => item.matchFound === false).length === 0) {
-      setFinishedGame(true);
-    }
-    const chosenCards = currentCards.filter(
-      (item) => item.isOpen === true && item.matchFound === false
-    );
-    if (chosenCards.length === 2) {
-      setTimeout(() => {
-        setCurrentCards(
-          currentCards.map((item, i, array) => {
-            if (chosenCards[0]?.id !== chosenCards[1]?.id) {
-              if (item.matchFound === false) {
-                return { ...item, isOpen: false };
-              }
-            } else {
-              if (item.id === chosenCards[0].id) {
-                return { ...item, isOpen: true, matchFound: true };
-              }
-            }
-            return item;
-          })
-        );
-      }, 500);
-    }
-  }, [currentCards]);
+  const options = [
+    { value: 4, label: "Beginner" },
+    { value: 8, label: "Intermediate" },
+    { value: 12, label: "Advanced" },
+    { value: 20, label: "Expert" },
+  ];
 
   return (
-    <Main>
-      <StopWatch active={finishedGame} />
-      <Container quantityItem={currentCards.length / 2}>
-        {currentCards.map((emojis, index) => (
-          <CardWrapper open={emojis.isOpen} key={index}>
-            {/* {emojis.isOpen ? ( */}
-            <CardsOpen
-              matchFound={emojis.matchFound}
-              open={emojis.isOpen}
-              // key={index}
-            >
-              {emojis.isOpen && <Cards>{emojis.content}</Cards>}
-            </CardsOpen>
-            <CardsClose
-              onClick={() => {
-                openTheCard(index);
-              }}
-              open={emojis.isOpen}
-              // key={index}
-            >
-              <OpenText>CLICK TO TURN THE CARD</OpenText>
-            </CardsClose>
-          </CardWrapper>
-        ))}
-      </Container>
-    </Main>
+    <MainForms>
+      <FormHeader>
+        <Logo />
+        <p>
+          Test your memory as you match pairs of cards in an interactive online
+          environment. Challenge yourself, surpass your mental limits, and reach
+          new levels of concentration and memorization in this thrilling virtual
+          memory game.
+        </p>
+      </FormHeader>
+      <FormContainer>
+        <InitGame>
+          {`Enter your name, choose your level, and click 'Start Game' to begin the game.`}
+        </InitGame>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <InputForm
+            {...register("name")}
+            placeholder="Enter your name"
+            defaultValue=""
+          />
+          <CustomSelect
+            options={options}
+            onSelect={(selectedValue) => {
+              setValue("level", selectedValue);
+            }}
+            {...register("level")}
+          />
+          <ButtonSubmit type="submit">Start Game</ButtonSubmit>
+        </StyledForm>
+      </FormContainer>
+    </MainForms>
   );
 };
 
