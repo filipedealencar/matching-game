@@ -55,22 +55,6 @@ To get the Matching Game up and running on your local machine, follow these step
 - The game ends when all pairs are successfully matched.
 - Your scores will be recorded and displayed on the high scores leaderboard.
 
-## Contributing
-
-Contributions are welcome and encouraged! Here's how you can contribute:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/new-feature`
-3. Make your changes and commit them.
-4. Push to the branch: `git push origin feature/new-feature`
-5. Submit a pull request detailing your changes.
-
-Please ensure your code follows the project's coding standards and includes appropriate tests.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 
 Have fun playing the Matching Game! Test your memory, challenge your friends, and enjoy the thrill of finding matching pairs. If you encounter any issues or have suggestions, feel free to [open an issue](https://github.com/filipedealencar/matching-game/issues). Happy gaming!
