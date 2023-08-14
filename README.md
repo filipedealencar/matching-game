@@ -55,6 +55,10 @@ To get the Matching Game up and running on your local machine, follow these step
 - The game ends when all pairs are successfully matched.
 - Your scores will be recorded and displayed on the high scores leaderboard.
 
+## View Live
+
+You can view the live version of this project [here](https://matching-game-project.netlify.app).
+
 ---
 
 Have fun playing the Matching Game! Test your memory, challenge your friends, and enjoy the thrill of finding matching pairs. If you encounter any issues or have suggestions, feel free to [open an issue](https://github.com/filipedealencar/matching-game/issues). Happy gaming!
