@@ -1,69 +1,76 @@
-<h1 align="center">Memory Game</h1>
+# Matching Game - README
+
+<h1 align="center">Matching Game</h1>
 
 <p align="center">
   <img src="./public/memory-game-screenshot.png" alt="Memory Game Screenshot">
 </p>
 
-## Description
+## Table of Contents
 
-Memory Game is a simple web-based memory matching game built using Next.js and Styled Components. The objective of the game is to find and match all pairs of identical cards within the least number of moves.
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-The project demonstrates how to create a fun and interactive game using modern web technologies.
+## Introduction
 
-<!-- ## Live Demo
+Welcome to the Matching Game project! This is a memory-based game built using Next.js, TypeScript, React Table, and Supabase. Test and improve your memory skills by matching pairs of cards while enjoying a modern web application.
 
-You can try out the live demo of the Memory Game here: [Memory Game Demo](https://your-live-demo-url) -->
+## Features
 
-## Installation
-
-To run the Memory Game locally on your machine, follow these steps:
-
-1. Clone this repository to your local machine:
-
-```bash
-git clone https://github.com/filipedealencar/matching-game.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd matching-game
-```
-
-3. Install the dependencies:
-
-```bash
-yarn install
-```
-
-4. Start the development server:
-
-```bash
-yarn dev
-```
-
-5. Open your web browser and access the game at `http://localhost:3000`.
+- Interactive and engaging memory gameplay.
+- Customizable grid sizes to increase the difficulty.
+- Score tracking to measure your performance.
+- Responsive design for a seamless experience on different devices.
+- Integration with Supabase for storing high scores and user data.
 
 ## Technologies Used
 
-- Next.js: A React framework for building server-side rendered applications.
-- Styled Components: A CSS-in-JS library for styling React components.
-- React: A JavaScript library for building user interfaces.
-- HTML5: The markup language used for structuring the game.
-- CSS3: The style sheet language used for designing the game's layout and appearance.
+- [Next.js](https://nextjs.org/): A React framework for building server-rendered applications.
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+- [React Table](https://react-table.tanstack.com/): A flexible and extensible data table library for React.
+- [Supabase](https://supabase.io/): An open-source Firebase alternative that provides a backend-as-a-service platform.
+- [CSS Modules](https://github.com/css-modules/css-modules): A way to locally scope CSS by automatically generating unique class names.
+- [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/react/): For unit testing and ensuring code quality.
 
-## How to Play
+## Getting Started
 
-1. Click on a card to flip it over and reveal its hidden symbol.
-2. Click on another card to find a matching pair.
-3. If the cards match, they will remain face up. Otherwise, they will be flipped back after a short delay.
-4. Keep flipping cards and finding pairs until all cards are matched.
-5. The game ends when all pairs are found, and the final score is displayed.
+To get the Matching Game up and running on your local machine, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/filipedealencar/matching-game.git`
+2. Navigate to the project directory: `cd matching-game`
+3. Install dependencies: `yarn install`
+4. Copy the `.env.example` file to `.env.local` and fill in your Supabase credentials.
+5. Start the development server: `yarn dev`
+
+## Usage
+
+- Launch the game and select a difficulty level.
+- Click on cards to reveal their images.
+- Try to find matching pairs by remembering the positions of the cards.
+- The game ends when all pairs are successfully matched.
+- Your scores will be recorded and displayed on the high scores leaderboard.
 
 ## Contributing
 
-Contributions are welcome! If you find any bugs or want to add new features, please open an issue or submit a pull request.
+Contributions are welcome and encouraged! Here's how you can contribute:
 
-<!-- ## License
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/new-feature`
+3. Make your changes and commit them.
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request detailing your changes.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
+Please ensure your code follows the project's coding standards and includes appropriate tests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Have fun playing the Matching Game! Test your memory, challenge your friends, and enjoy the thrill of finding matching pairs. If you encounter any issues or have suggestions, feel free to [open an issue](https://github.com/filipedealencar/matching-game/issues). Happy gaming!
