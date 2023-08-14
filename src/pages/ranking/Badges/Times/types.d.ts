@@ -1,0 +1,3 @@
+interface IBadgeTime {
+  time: string;
+}

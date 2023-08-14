@@ -13,6 +13,17 @@ export const ContainerRanking = styled.div`
   align-items: center;
 `;
 
-export const ContentRanking = styled.div``;
+export const ContentRanking = styled.div`
+  width: 500px;
+  height: 500px;
+  margin: 20px 60px;
+  h1 {
+    text-align: center;
+    filter: drop-shadow(2px 7px 6px black);
+    font-size: 2rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+`;
 
 export default MainRanking;

@@ -13,6 +13,7 @@ import { StopWatch } from "@/Components/Stopwatch";
 import { useRouter } from "next/router";
 import { GlobalContext } from "@/Context/GlobalContext";
 import toast from "react-hot-toast";
+import { insertScore } from "@/Services/api";
 
 const Game = () => {
   const router = useRouter();
@@ -140,18 +141,21 @@ const Game = () => {
     return Math.round(
       (level *
         (level === 8
-          ? 1000
+          ? 1500
           : level === 12
           ? 10000
           : level === 20
           ? 100000
-          : 100)) /
+          : 1000)) /
         time
     );
   };
 
   useEffect(() => {
     if (currentCards.filter((item) => item.matchFound === false).length === 0) {
+      setTimeout(() => {
+        router.push("/ranking");
+      }, 1000);
       setFinishedGame(true);
     }
     const chosenCards = currentCards.filter(
@@ -177,6 +181,30 @@ const Game = () => {
     }
   }, [currentCards]);
 
+  const handleFetchDatabase = (time: any) => {
+    insertScore(
+      userData.level === 4
+        ? "db_matching_game_beginner"
+        : userData.level === 8
+        ? "db_matching_game_intermediate"
+        : userData.level === 12
+        ? "db_matching_game_advanced"
+        : userData.level === 20
+        ? "db_matching_game_expert"
+        : "db_matching_game",
+      {
+        name: userData.name,
+        time: `${time!.hours < 10 ? `0${time!.hours}` : time!.hours}:${
+          time!.minutes < 10 ? `0${time!.minutes}` : time!.minutes
+        }:${time!.seconds < 10 ? `0${time!.seconds}` : time!.seconds}`,
+        score: defineValueScore(
+          userData.level!,
+          Number(`${time!.hours}${time!.minutes}${time!.seconds}`)
+        ),
+      }
+    );
+  };
+
   if (userData.name === "" || !userData.level) {
     if (typeof window !== "undefined") {
       router.push("/");
@@ -192,7 +220,8 @@ const Game = () => {
           start={gameStarted.counter === -1}
           userName={userData.name}
           stop={finishedGame}
-          getTime={(time) =>
+          getTime={(time) => {
+            handleFetchDatabase(time);
             setUserData((state) => {
               return {
                 ...state,
@@ -201,8 +230,8 @@ const Game = () => {
                   Number(`${time!.hours}${time!.minutes}${time!.seconds}`)
                 ),
               };
-            })
-          }
+            });
+          }}
         />
         <Content quantityItem={8}>
           {currentCards.map((emojis, index) => (

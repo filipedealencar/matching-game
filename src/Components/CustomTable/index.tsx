@@ -7,6 +7,7 @@ import {
   THStyle,
   TbodyStyle,
   TDStyle,
+  TableWrapper,
 } from "./styles";
 
 const CustomTable: React.FC<ICustomTable> = ({ data }) => {
@@ -29,35 +30,45 @@ const CustomTable: React.FC<ICustomTable> = ({ data }) => {
     });
 
   return (
-    <TableStyle {...getTableProps()}>
-      <TheadStyle>
-        {headerGroups.map((headerGroup) => (
-          <TRStyle {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-            {headerGroup.headers.map((column) => (
-              <THStyle {...column.getHeaderProps()} key={column.id}>
-                {column.render("Header")}
-              </THStyle>
-            ))}
-          </TRStyle>
-        ))}
-      </TheadStyle>
-      <TbodyStyle {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <TRStyle {...row.getRowProps()} key={row.id}>
-              {row.cells.map((cell) => {
-                return (
-                  <TDStyle {...cell.getCellProps()} key={cell.column.id}>
-                    {cell.render("Cell")}
-                  </TDStyle>
-                );
-              })}
+    <TableWrapper>
+      <TableStyle {...getTableProps()}>
+        <TheadStyle>
+          {headerGroups.map((headerGroup, index) => (
+            <TRStyle
+              position={index}
+              {...headerGroup.getHeaderGroupProps()}
+              key={headerGroup.id}
+            >
+              {headerGroup.headers.map((column) => (
+                <THStyle {...column.getHeaderProps()} key={column.id}>
+                  {column.render("Header")}
+                </THStyle>
+              ))}
             </TRStyle>
-          );
-        })}
-      </TbodyStyle>
-    </TableStyle>
+          ))}
+        </TheadStyle>
+        <TbodyStyle {...getTableBodyProps()}>
+          {rows.map((row, index) => {
+            prepareRow(row);
+            return (
+              <TRStyle position={index} {...row.getRowProps()} key={row.id}>
+                {row.cells.map((cell) => {
+                  return (
+                    <TDStyle
+                      {...cell.getCellProps()}
+                      isTheFirst={index === 0}
+                      key={cell.column.id}
+                    >
+                      {cell.render("Cell")}
+                    </TDStyle>
+                  );
+                })}
+              </TRStyle>
+            );
+          })}
+        </TbodyStyle>
+      </TableStyle>
+    </TableWrapper>
   );
 };
 

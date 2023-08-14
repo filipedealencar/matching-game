@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 
-export const ContainerBadgeName = styled.div`
+export const ContainerBadgeTime = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 24px;
 `;
 
-export default ContainerBadgeName;
+export default ContainerBadgeTime;
