@@ -51,8 +51,6 @@ const Game = () => {
     started: true,
   });
 
-  console.log(userData);
-
   const [currentCards, setCurrentCards] = useState(
     cardsGame
       .sort(() => Math.random() - 0.5)
@@ -182,27 +180,68 @@ const Game = () => {
   }, [currentCards]);
 
   const handleFetchDatabase = (time: any) => {
-    insertScore(
+    const typeLevel =
       userData.level === 4
-        ? "db_matching_game_beginner"
+        ? "beginner"
         : userData.level === 8
-        ? "db_matching_game_intermediate"
+        ? "intermediate"
         : userData.level === 12
-        ? "db_matching_game_advanced"
+        ? "advanced"
         : userData.level === 20
-        ? "db_matching_game_expert"
-        : "db_matching_game",
-      {
-        name: userData.name,
-        time: `${time!.hours < 10 ? `0${time!.hours}` : time!.hours}:${
-          time!.minutes < 10 ? `0${time!.minutes}` : time!.minutes
-        }:${time!.seconds < 10 ? `0${time!.seconds}` : time!.seconds}`,
-        score: defineValueScore(
-          userData.level!,
-          Number(`${time!.hours}${time!.minutes}${time!.seconds}`)
-        ),
-      }
+        ? "expert"
+        : "beginner";
+
+    const rankingValue = {
+      name: userData.name,
+      time: `${time!.hours < 10 ? `0${time!.hours}` : time!.hours}:${
+        time!.minutes < 10 ? `0${time!.minutes}` : time!.minutes
+      }:${time!.seconds < 10 ? `0${time!.seconds}` : time!.seconds}`,
+      score: defineValueScore(
+        userData.level!,
+        Number(`${time!.hours}${time!.minutes}${time!.seconds}`)
+      ),
+    };
+
+    localStorage.setItem(
+      "ranking",
+      localStorage.getItem("ranking")
+        ? JSON.stringify({
+            ...JSON.parse(localStorage.getItem("ranking")!),
+            ...{
+              [typeLevel]: JSON.parse(localStorage.getItem("ranking")!)[
+                typeLevel
+              ]
+                ? [
+                    ...JSON.parse(localStorage.getItem("ranking")!)[typeLevel],
+                    rankingValue,
+                  ]
+                : [rankingValue],
+            },
+          })
+        : JSON.stringify({ [typeLevel]: [rankingValue] })
     );
+
+    //   insertScore(
+    //     userData.level === 4
+    //       ? "db_matching_game_beginner"
+    //       : userData.level === 8
+    //       ? "db_matching_game_intermediate"
+    //       : userData.level === 12
+    //       ? "db_matching_game_advanced"
+    //       : userData.level === 20
+    //       ? "db_matching_game_expert"
+    //       : "db_matching_game",
+    //     {
+    //       name: userData.name,
+    //       time: `${time!.hours < 10 ? `0${time!.hours}` : time!.hours}:${
+    //         time!.minutes < 10 ? `0${time!.minutes}` : time!.minutes
+    //       }:${time!.seconds < 10 ? `0${time!.seconds}` : time!.seconds}`,
+    //       score: defineValueScore(
+    //         userData.level!,
+    //         Number(`${time!.hours}${time!.minutes}${time!.seconds}`)
+    //       ),
+    //     }
+    //   );
   };
 
   if (userData.name === "" || !userData.level) {

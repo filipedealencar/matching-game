@@ -21,18 +21,35 @@ const Ranking: React.FC = ({}) => {
   const [scoreData, setScoreData] = useState<ScoreDatabase[]>([]);
 
   useEffect(() => {
-    getScore(
+    const typeLevel =
       userData.level === 4
-        ? "db_matching_game_beginner"
+        ? "beginner"
         : userData.level === 8
-        ? "db_matching_game_intermediate"
+        ? "intermediate"
         : userData.level === 12
-        ? "db_matching_game_advanced"
+        ? "advanced"
         : userData.level === 20
-        ? "db_matching_game_expert"
-        : "db_matching_game"
-    ).then((response) => setScoreData(response.data));
-  }, [userData]);
+        ? "expert"
+        : "beginner";
+
+    setScoreData(
+      JSON.parse(localStorage.getItem("ranking")!)[typeLevel].sort(
+        (a: any, b: any) => b.score - a.score
+      )
+    );
+
+    // getScore(
+    //   userData.level === 4
+    //     ? "db_matching_game_beginner"
+    //     : userData.level === 8
+    //     ? "db_matching_game_intermediate"
+    //     : userData.level === 12
+    //     ? "db_matching_game_advanced"
+    //     : userData.level === 20
+    //     ? "db_matching_game_expert"
+    //     : "db_matching_game"
+    // ).then((response) => setScoreData(response.data));
+  }, []);
   const value = [
     { name: "Alice", time: "00:00:47", score: 560 },
     { name: "Bob", time: "00:01:34", score: 345 },
